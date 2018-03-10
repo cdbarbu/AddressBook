@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.cami.addressbook.ResultActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/resultText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="72dp" />
+        android:layout_width="352dp"
+        android:layout_height="462dp"
+        android:layout_marginLeft="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

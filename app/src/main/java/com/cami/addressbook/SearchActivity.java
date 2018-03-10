@@ -2,6 +2,7 @@ package com.cami.addressbook;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -37,19 +38,34 @@ public class SearchActivity extends AppCompatActivity {
         String toateNumele = "";
 
         try {
-            Cursor photoCursor = getContentResolver().query(
-                    Contacts.People.CONTENT_URI,
-                    new String[]{//ContactsContract.Contacts.PHOTO_ID,
-                            Contacts.People.NAME},
-                    Contacts.People.NAME + " = ?",
-                    new String[]{searchString}, null);
+            //Uri readContactsUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+            Uri uri = ContactsContract.Contacts.CONTENT_URI;
 
-            photoCursor.moveToFirst();
+            //String[] projection = { ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME };
+            String[] projection = new String[] {
+                    ContactsContract.Contacts._ID,
+                    ContactsContract.Contacts.DISPLAY_NAME,
+                    ContactsContract.Contacts.HAS_PHONE_NUMBER
+            };
 
-            while (photoCursor.moveToNext()) {
-                //Log.d("Photo Thumbnail", "" + photoCursor.getString(1));
-                toateNumele = toateNumele + "\n" + photoCursor.getString(2);
+            //String selection = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?";
+            String selection = ContactsContract.Contacts.DISPLAY_NAME + " LIKE '%"+searchString+"%'";
+
+            String[] selectionArgs = { searchString };
+
+            Cursor photoCursor = getContentResolver().query(uri, projection, selection, null /*selectionArgs*/, null);
+
+            //photoCursor.moveToFirst();
+
+            if (photoCursor != null && photoCursor.getCount() > 0) {
+                while (photoCursor.moveToNext()) {
+                    //Log.d("Photo Thumbnail", "" + photoCursor.getString(1));
+                    toateNumele = toateNumele + ("\n" + photoCursor.getString(1));
+                } ;
             }
+
+            photoCursor.close();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
