@@ -27,15 +27,7 @@ public class SearchActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.searchText);
         String searchString = editText.getText().toString();
 
-//        Cursor cursor = getContentResolver().query(
-//                android.provider.ContactsContract.Contacts.CONTENT_URI,
-//                new String[] { ContactsContract.Contacts.PHOTO_ID,
-//                        ContactsContract.Contacts.DISPLAY_NAME,
-//                        ContactsContract.Contacts._ID },
-//                ContactsContract.Contacts.HAS_PHONE_NUMBER, null,
-//                ContactsContract.Contacts.DISPLAY_NAME);
-
-        String toateNumele = "";
+        /*String toateNumele = "";
 
         try {
             //Uri readContactsUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
@@ -53,7 +45,7 @@ public class SearchActivity extends AppCompatActivity {
 
             String[] selectionArgs = { searchString };
 
-            Cursor photoCursor = getContentResolver().query(uri, projection, selection, null /*selectionArgs*/, null);
+            Cursor photoCursor = getContentResolver().query(uri, projection, selection, null *//*selectionArgs*//*, null);
 
             //photoCursor.moveToFirst();
 
@@ -69,7 +61,9 @@ public class SearchActivity extends AppCompatActivity {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        intent.putExtra("GIGI", toateNumele);
+*/
+        //intent.putExtra("GIGI", toateNumele);
+        intent.putExtra("GIGI", searchString);
 
         startActivity(intent);
 
